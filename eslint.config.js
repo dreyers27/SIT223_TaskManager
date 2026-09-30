@@ -9,7 +9,7 @@ module.exports = [
     js.configs.recommended,
 
     {
-        files: ["app.js"],
+        files: ["app.js", "build.js"],
         languageOptions: {
             ecmaVersion: 2021,
             sourceType: "commonjs",

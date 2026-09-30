@@ -5,6 +5,9 @@ pipeline {
 
         stage('Build') {
             steps {
+                echo 'Installing project dependencies...'
+                bat 'npm ci'
+
                 echo 'Building Task Manager application...'
                 bat 'npm run build'
             }

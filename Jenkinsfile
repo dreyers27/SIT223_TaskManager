@@ -48,5 +48,20 @@ pipeline {
                 archiveArtifacts artifacts: 'build/TaskManager-build.zip', fingerprint: true
             }
         }
+
+        stage('Monitoring') {
+            steps {
+                echo 'Starting application for health monitoring...'
+
+                bat 'start /B cmd /c "node app.js > monitoring.log 2>&1"'
+
+                bat '''
+                    timeout /T 3 /NOBREAK > NUL
+                    curl -f http://localhost:3000/api/health
+                '''
+
+                echo 'Application health check passed.'
+            }
+        }
     }
 }

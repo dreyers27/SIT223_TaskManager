@@ -68,4 +68,12 @@ if (require.main === module) {
     });
 }
 
+// Health check
+app.get("/api/health", (req, res) => {
+    res.status(200).json({
+        status: "healthy",
+        service: "Task Manager"
+    });
+});
+
 module.exports = app;
